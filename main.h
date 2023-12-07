@@ -1,4 +1,4 @@
-#idndef MAIN_H
+#ifndef MAIN_H
 #define MAIN_H
 
 #include <stdio.h>
@@ -105,5 +105,7 @@ int _strlen(char *str);
 int built_ins(char **args);
 
 int command_manager(char **args);
+
+int i;
 
 #endif
