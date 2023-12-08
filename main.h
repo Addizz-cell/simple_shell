@@ -108,4 +108,6 @@ int command_manager(char **args);
 
 int i;
 
+char *pwd;
+
 #endif

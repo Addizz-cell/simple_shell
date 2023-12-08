@@ -1,0 +1,51 @@
+.TH SIMPLE_SHELL 1 "December 2023" "Version 1.0" "User Commands"
+
+.SH NAME
+simple_shell \- a basic command-line interpreter
+
+.SH SYNOPSIS
+.B simple_shell
+
+.SH DESCRIPTION
+simple_shell is a basic command-line interpreter that allows users to execute commands.
+
+.SH OPTIONS
+None
+
+.SH USAGE
+To run the simple_shell, simply execute the command without any arguments:
+.PP
+.B simple_shell
+.PP
+Once launched, simple_shell will display a prompt where users can enter commands.
+.PP
+Examples:
+.B simple_shell$ ls
+.B simple_shell$ pwd
+.B simple_shell$ echo "Hello, world!"
+
+.SH EXIT STATUS
+The simple_shell command exits with the following status:
+.TP
+0   Successful execution
+.TP
+>0  An error occurred
+
+.SH AUTHOR
+Written by  Afolabi Praise <afolabipraise43@gmail.com> or Fawas Iwayemi <iwayemi\
+olawale@gmail.com>.
+
+
+.SH SEE ALSO
+More information may be available in the documentation provided.
+
+.SH BUGS
+Report bugs to Afolabi Praise <afolabipraise43@gmail.com> or Fawas Iwayemi <iwayemiolawale@gmail.com>.
+
+.SH COPYRIGHT
+This is free and unencumbered software released into the public domain.
+
+.SH NOTES
+This shell is a basic implementation and does not include advanced features such as input/output redirection, piping, or handling signals.
+
+For additional information or help, refer to the provided documentation.
