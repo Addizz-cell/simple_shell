@@ -11,6 +11,7 @@
 #include <string.h>
 #include <limits.h>
 #include <signal.h>
+#include <errno.h>
 
 #define FALSE 0
 #define TRUE 1

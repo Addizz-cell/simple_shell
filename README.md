@@ -1,4 +1,4 @@
-# **Simple Shell :shell:
+# Simple Shell :shell:
 
 A simple UNIX command interpreter written as part of the low-level programming and algorithm track at ALX.
 
@@ -23,5 +23,4 @@ it can be used to exercute standard commands in the path such as ls and pwd
 
 * **Fawas Iwayemi** **||** [email](iwayemiolawale@gmail.com)
 
-This project was written as part of the curriculum of the ALX-SE programme
-.
+This project was written as part of the curriculum of the ALX-SE programme.
