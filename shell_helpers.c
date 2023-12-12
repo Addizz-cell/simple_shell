@@ -71,44 +71,44 @@ return (TRUE);
  */
 int and_or(char **args, char operator, int last_compare)
 {
-	int i;
+int i;
 
-	if (last_compare == NEITHER)
-	{
-		i = execute_command(args);
-		if (i == EXIT_SHELL)
-			return (EXIT_SHELL);
-		if (i == TRUE)
-			return (TRUE);
+if (last_compare == NEITHER)
+{
+i = execute_command(args);
+if (i == EXIT_SHELL)
+return (EXIT_SHELL);
+if (i == TRUE)
+return (TRUE);
 
-		return (FALSE);
-	}
-	if (last_compare == TRUE && operator == '&')
-	{
-		i = execute_command(args);
-		if (i == EXIT_SHELL)
-			return (EXIT_SHELL);
-		if (i == TRUE)
-			return (TRUE);
+return (FALSE);
+}
+if (last_compare == TRUE && operator == '&')
+{
+i = execute_command(args);
+if (i == EXIT_SHELL)
+return (EXIT_SHELL);
+if (i == TRUE)
+return (TRUE);
 
-		return (FALSE);
-	}
+return (FALSE);
+}
 
-	if (last_compare == FALSE && operator == '|')
-	{
-		i = execute_command(args);
-		if (i == EXIT_SHELL)
-			return (EXIT_SHELL);
-		if (i == TRUE)
-			return (TRUE);
+if (last_compare == FALSE && operator == '|')
+{
+i = execute_command(args);
+if (i == EXIT_SHELL)
+return (EXIT_SHELL);
+if (i == TRUE)
+return (TRUE);
 
-		return (FALSE);
-	}
+return (FALSE);
+}
 
-	if (last_compare == TRUE && operator == '|')
-		return (TRUE);
+if (last_compare == TRUE && operator == '|')
+return (TRUE);
 
-	return (FALSE);
+return (FALSE);
 }
 
 /**
@@ -120,20 +120,20 @@ int and_or(char **args, char operator, int last_compare)
  */
 int built_ins(char **args)
 {
-	char **args_ptr = args;
-	int i;
+char **args_ptr = args;
+int i;
 
-	while (*args_ptr != NULL)
-	{
-		if (**args_ptr == '#')
-		{
-			*args_ptr = NULL;
-			break;
-		}
-		*args_ptr = check_for_vars(*args_ptr);
+while (*args_ptr != NULL)
+{
+if (**args_ptr == '#')
+{
+*args_ptr = NULL;
+break;
+}
+*args_ptr = check_for_vars(*args_ptr);
 
-		args_ptr++;
-	}
+args_ptr++;
+}
 	if (*args == NULL)
 		return (SKIP_FORK);
 
@@ -312,5 +312,5 @@ int execute_command(char **args)
 	if (status != 0)
 		return (FALSE);
 
-	return (TRUE);
+     return (TRUE);
 }
