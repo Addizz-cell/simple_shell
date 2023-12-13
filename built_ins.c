@@ -1,7 +1,5 @@
 #include "main.h"
 
-int status;
-
 /**
  * _setenv - sets and environmental variable
  * @name: name of the variable
@@ -97,7 +95,7 @@ int i;
 getcwd(path_buffer, buf_size);
 
 if (name == NULL || str_compare("~", name, PREFIX) == TRUE
-    || str_compare("$HOME", name, MATCH) == TRUE)
+|| str_compare("$HOME", name, MATCH) == TRUE)
 {
 if (name != NULL && *name == '~' && *(name + 1) != '\0' && *(name + 1) != '/')
 {
@@ -145,7 +143,9 @@ write(STDOUT_FILENO, "\n", 1);
 _setenv("PWD", (const char *)pwd);
 }
 }
-if (name != NULL && str_compare("~", name, MATCH) == FALSE && str_compare("$HOME", name, MATCH) == FALSE && i != -1 && *name != '\0' && str_compare("-", name, MATCH) != TRUE)
+if (name != NULL && str_compare("~", name, MATCH) == FALSE &&
+str_compare("$HOME", name, MATCH) == FALSE && i != -1 &&
+*name != '\0' && str_compare("-", name, MATCH) != TRUE)
 {
 i = chdir((const char *)name);
 if (i != -1)
@@ -237,5 +237,3 @@ int print_env(void)
 
 	return (SKIP_FORK);
 }
-
-  

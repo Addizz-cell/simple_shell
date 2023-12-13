@@ -31,9 +31,8 @@ return (NULL);
  */
 char **make_array(char *str, char delim, char **if_sep)
 {
-char *str_ptr = str;
+char *str_ptr = str, **array = NULL;
 unsigned int i = 2;
-char **array = NULL;
 
 while (*str_ptr != '\0')
 {
@@ -45,7 +44,7 @@ i++;
 str_ptr++;
 }
 
-array = malloc(i * sizeof(char **));
+array = malloc(i *sizeof(char **));
 if (array == NULL)
 exit(EXIT_FAILURE);
 
@@ -158,6 +157,6 @@ ptr++;
 }
 
 free(args);
-  
+
 return (TRUE);
 }
