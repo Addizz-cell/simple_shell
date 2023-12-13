@@ -1,9 +1,5 @@
 #include "main.h"
 
-int status;
-
-char *shell_name;
-
 /**
  * command_manager - manages the process a command goes through to get executed
  * @args: command and arguments
@@ -21,30 +17,23 @@ int what_do;
 
 while (*args != NULL && prev_eval != EXIT_SHELL)
 {
-while (*args_ptr != NULL && **args_ptr != '&'
-&& **args_ptr != '|')
+while (*args_ptr != NULL && **args_ptr != '&' && **args_ptr != '|')
 args_ptr++;
 
 if (str_compare(*args_ptr, "||", MATCH) == TRUE)
 {
-*args_ptr = NULL;
-args_ptr++;
-next_op = '|';
+*args_ptr = NULL, args_ptr++, next_op = '|';
 }
 if (str_compare(*args_ptr, "&&", MATCH) == TRUE)
 {
-*args_ptr = NULL;
-args_ptr++;
-next_op = '&';
+*args_ptr = NULL, args_ptr++, next_op = '&';
 }
 if (next_op == 'c')
 break;
 
 prev_eval = and_or(args, prev_op, prev_eval);
 if (prev_eval == FALSE)
-no_err = FALSE;
-prev_op = next_op;
-args = args_ptr;
+no_err = FALSE, prev_op = next_op, args = args_ptr;
 }
 
 if (next_op == 'c')
@@ -155,8 +144,7 @@ args_ptr++;
 		return (EXIT_SHELL);
 	else if (str_compare("setenv", *args, MATCH) == TRUE && args[1] != NULL)
 		return (_setenv(args[1], args[2]));
-	else if (str_compare("unsetenv", *args, MATCH) == TRUE
-		 && args[1] != NULL)
+	else if (str_compare("unsetenv", *args, MATCH) == TRUE && args[1] != NULL)
 		return (_unsetenv(args[1]));
 	else if (str_compare("cd", *args, MATCH) == TRUE)
 		return (change_dir(args[1]));
@@ -259,58 +247,58 @@ char *check_command(char **args)
  */
 int execute_command(char **args)
 {
-	char *buf_ptr = *args;
-	char *command_name;
-	pid_t pid;
-	int what_do = built_ins(args);
+char *buf_ptr = *args;
+char *command_name;
+pid_t pid;
+int what_do = built_ins(args);
 
-	if (what_do == DO_EXECVE)
-	{
-		command_name = check_command(args);
-		if (command_name == NULL)
-			return (FALSE);
+if (what_do == DO_EXECVE)
+{
+command_name = check_command(args);
+if (command_name == NULL)
+return (FALSE);
 
-		pid = fork();
-		if (pid == -1)
-		{
-			exit(EXIT_FAILURE);
-		}
-		if (pid == 0)
-		{
-			execve(command_name, args, environ);
-			exit(EXIT_FAILURE);
-		}
-		wait(&status);
-		free(command_name);
-		fflush(stdin);
-	}
+pid = fork();
+if (pid == -1)
+{
+exit(EXIT_FAILURE);
+}
+if (pid == 0)
+{
+execve(command_name, args, environ);
+exit(EXIT_FAILURE);
+}
+wait(&status);
+free(command_name);
+fflush(stdin);
+}
 
-	if (str_compare("false", *args, MATCH) == TRUE)
-		status = 1;
+if (str_compare("false", *args, MATCH) == TRUE)
+status = 1;
 
-	if (*args != buf_ptr)
-		free(*args);
-	args++;
+if (*args != buf_ptr)
+free(*args);
+args++;
 
-	while (*args != NULL)
-	{
-		while (*buf_ptr != '\0')
-		{
-			buf_ptr++;
-		}
-		buf_ptr++;
+while (*args != NULL)
+{
+while (*buf_ptr != '\0')
+{
+buf_ptr++;
+}
+buf_ptr++;
 
-		if (*args != buf_ptr)
-			free(*args);
+if (*args != buf_ptr)
+free(*args);
 
-		args++;
-	}
+args++;
+}
 
-	if (what_do == EXIT_SHELL)
-		return (EXIT_SHELL);
+if (what_do == EXIT_SHELL)
+return (EXIT_SHELL);
 
-	if (status != 0)
-		return (FALSE);
+if (status != 0)
+return (FALSE);
 
-     return (TRUE);
+return (TRUE);
 }
