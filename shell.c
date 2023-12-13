@@ -8,13 +8,16 @@
  * Return: 0, or another number if desired
  */
 int status = 0;
+
 int line_num = 1;
+
 char *shell_name = NULL;
 
 int main(__attribute__((unused)) int ac, char **av)
 {
 int bytes_read;
 int is_separated = FALSE;
+int i;
 size_t buf_size = 1;
 char *buf = NULL;
 char *buf_ptr;
@@ -22,15 +25,14 @@ char *buf_tmp;
 char **args = NULL;
 
 shell_name = _strdup(*av);
+
 environ = array_cpy(environ, list_len(environ, NULL));
+
 signal(SIGINT, SIG_IGN);
 
 buf = malloc(1);
 if (buf == NULL)
-{
-perror("memory allocation error");
 exit(EXIT_FAILURE);
-}
 
 while (1)
 {
@@ -56,7 +58,8 @@ line_num++;
 continue;
 }
 buf_ptr = buf;
-} else
+}
+else
 buf_ptr = buf_tmp;
 
 buf_tmp = NULL;
@@ -66,7 +69,9 @@ is_separated = TRUE;
 else
 is_separated = FALSE;
 
-free_array(args);
+i = command_manager(args);
+
+free(args);
 
 if (is_separated == FALSE)
 line_num++;
@@ -74,7 +79,6 @@ line_num++;
 if (i == EXIT_SHELL)
 break;
 }
-
 free(buf);
 alias_func(NULL, TRUE);
 free_array(environ);
