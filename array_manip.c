@@ -41,7 +41,7 @@ if (*str_ptr == ';')
 break;
 if (*str_ptr == delim && *(str_ptr + 1) != '\0')
 i++;
-      
+
 str_ptr++;
 }
 

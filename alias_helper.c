@@ -7,7 +7,6 @@
  * Return: TRUE
  */
 
-int status;
 
 int free_aliases(alias *alias_ptr)
 {
@@ -44,7 +43,7 @@ return (DO_EXECVE);
 }
 alias_ptr = alias_ptr->next;
 }
-return(TRUE);
+return (TRUE);
 }
 
 /**
@@ -107,26 +106,27 @@ return (FALSE);
  */
 int set_alias_value(char *arg, alias *alias_ptr, char *new_value)
 {
-while (alias_ptr->next != NULL && str_compare(alias_ptr->name, arg, MATCH) != TRUE)
-{
-alias_ptr = alias_ptr->next;
-}
+	while (alias_ptr->next != NULL &&
+			str_compare(alias_ptr->name, arg, MATCH) != TRUE)
+	{
+		alias_ptr = alias_ptr->next;
+	}
 
-if (str_compare(alias_ptr->name, arg, MATCH) == TRUE)
-{
-free(alias_ptr->value);
-}
-else
-{
-alias_ptr->next = malloc(sizeof(alias *));
-alias_ptr = alias_ptr->next;
-if (alias_ptr == NULL)
-exit(EXIT_FAILURE);
+	if (str_compare(alias_ptr->name, arg, MATCH) == TRUE)
+	{
+		free(alias_ptr->value);
+	}
+	else
+	{
+		alias_ptr->next = malloc(sizeof(alias *));
+		alias_ptr = alias_ptr->next;
+		if (alias_ptr == NULL)
+			exit(EXIT_FAILURE);
 
-alias_ptr->name = _strdup(arg);
-alias_ptr->next = NULL;
-}
-alias_ptr->value = _strdup(new_value);
+		alias_ptr->name = _strdup(arg);
+		alias_ptr->next = NULL;
+	}
+	alias_ptr->value = _strdup(new_value);
 
-return (TRUE);
+	return (TRUE);
 }
